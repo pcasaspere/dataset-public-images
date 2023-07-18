@@ -1,4 +1,4 @@
-name: Download Public Images
+name: Manual Download Public Images
 
 on:
   workflow_dispatch:
