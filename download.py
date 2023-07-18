@@ -1,6 +1,7 @@
 import os
 import datetime
 import requests
+import subprocess
 
 
 def downloadAndSaveImage(url: str, save_path: str) -> None:
@@ -11,6 +12,11 @@ def downloadAndSaveImage(url: str, save_path: str) -> None:
             f.write(response.content)
     except requests.exceptions.RequestException as e:
         print(f"Error en descargar l'imatge: {e}")
+
+
+def gitCommit() -> None:
+    subprocess.run(["git", "add", "."])
+    subprocess.run(["git", "commit", "-m", f"Agregar nuevas imagenes"])
 
 
 if __name__ == "__main__":
@@ -37,3 +43,5 @@ if __name__ == "__main__":
         save_path = os.path.join(f"{images_directory_target}", file_name)
 
         downloadAndSaveImage(targets[key], save_path)
+
+    gitCommit()
