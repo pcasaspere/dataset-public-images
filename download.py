@@ -15,6 +15,8 @@ def downloadAndSaveImage(url: str, save_path: str) -> None:
 
 
 def gitCommit() -> None:
+    subprocess.run(['git', 'config', 'user.name', 'Cron Github'])
+    subprocess.run(['git', 'config', 'user.email', 'actions@users.noreply.github.com'])
     subprocess.run(["git", "add", "."])
     subprocess.run(["git", "commit", "-m", f"Agregar nuevas imagenes"])
 
