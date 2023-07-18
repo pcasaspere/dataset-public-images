@@ -20,5 +20,17 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run script
+      - name: Download script
         run: python download.py
+
+      - name: Repo commit
+        run: |-
+          git config user.name "Github Action"
+          git config user.email "actions@users.noreply.github.com"
+          git add .
+          git commit -m "Add new images"
+
+      - name: Make «push»
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.token }}

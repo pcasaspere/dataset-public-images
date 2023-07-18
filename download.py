@@ -13,16 +13,6 @@ def downloadAndSaveImage(url: str, save_path: str) -> None:
     except requests.exceptions.RequestException as e:
         print(f"Error en descargar l'imatge: {e}")
 
-
-def gitCommit() -> None:
-    subprocess.run(['git', 'config', 'user.name', 'Cron Github'])
-    subprocess.run(['git', 'config', 'user.email',
-                   'actions@users.noreply.github.com'])
-    subprocess.run(["git", "add", "."])
-    subprocess.run(["git", "commit", "-m", f"Agregar nuevas imagenes"])
-    subprocess.run(['git', "push"])
-
-
 if __name__ == "__main__":
     print('Start script')
 
@@ -47,5 +37,3 @@ if __name__ == "__main__":
         save_path = os.path.join(f"{images_directory_target}", file_name)
 
         downloadAndSaveImage(targets[key], save_path)
-
-    gitCommit()
