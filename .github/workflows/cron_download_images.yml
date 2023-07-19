@@ -2,7 +2,7 @@ name: Cron Download Public Images
 
 on:
   schedule:
-    - cron: "0 6-23 * * *"
+    - cron: "0 4-21 * * *"
 
 jobs:
   download:
