@@ -1,7 +1,7 @@
 import os
 import datetime
 import requests
-import subprocess
+from PIL import Image
 
 
 def downloadAndSaveImage(url: str, save_path: str) -> None:
@@ -12,6 +12,17 @@ def downloadAndSaveImage(url: str, save_path: str) -> None:
             f.write(response.content)
     except requests.exceptions.RequestException as e:
         print(f"Error en descargar l'imatge: {e}")
+
+
+def cropImage(file_path: str, crop_size: int = 50) -> None:
+    img = Image.open(file_path)
+
+    width, height = img.size
+
+    coordenadas_recorte = (0, 0, width, height - crop_size)
+
+    img.crop(coordenadas_recorte).save(file_path)
+
 
 if __name__ == "__main__":
     print('Start script')
@@ -37,3 +48,4 @@ if __name__ == "__main__":
         save_path = os.path.join(f"{images_directory_target}", file_name)
 
         downloadAndSaveImage(targets[key], save_path)
+        cropImage(save_path)
